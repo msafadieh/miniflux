@@ -74,6 +74,7 @@ func (s *Storage) Feeds(userID int64) (model.Feeds, error) {
 			f.username,
 			f.password,
 			f.disabled,
+			f.rtl,
 			f.category_id,
 			c.title as category_title,
 			fi.icon_id,
@@ -116,6 +117,7 @@ func (s *Storage) Feeds(userID int64) (model.Feeds, error) {
 			&feed.Username,
 			&feed.Password,
 			&feed.Disabled,
+			&feed.RTL,
 			&feed.Category.ID,
 			&feed.Category.Title,
 			&iconID,
@@ -280,6 +282,7 @@ func (s *Storage) FeedByID(userID, feedID int64) (*model.Feed, error) {
 			f.username,
 			f.password,
 			f.disabled,
+			f.rtl,
 			f.category_id,
 			c.title as category_title,
 			fi.icon_id,
@@ -310,6 +313,7 @@ func (s *Storage) FeedByID(userID, feedID int64) (*model.Feed, error) {
 		&feed.Username,
 		&feed.Password,
 		&feed.Disabled,
+		&feed.RTL,
 		&feed.Category.ID,
 		&feed.Category.Title,
 		&iconID,
@@ -412,9 +416,10 @@ func (s *Storage) UpdateFeed(feed *model.Feed) (err error) {
 			user_agent=$13,
 			username=$14,
 			password=$15,
-			disabled=$16
+			disabled=$16,
+			rtl=$17
 		WHERE
-			id=$17 AND user_id=$18
+			id=$18 AND user_id=$19
 	`
 	_, err = s.db.Exec(query,
 		feed.FeedURL,
@@ -433,6 +438,7 @@ func (s *Storage) UpdateFeed(feed *model.Feed) (err error) {
 		feed.Username,
 		feed.Password,
 		feed.Disabled,
+		feed.RTL,
 		feed.ID,
 		feed.UserID,
 	)

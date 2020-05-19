@@ -35,6 +35,7 @@ type Feed struct {
 	Icon               *FeedIcon `json:"icon"`
 	UnreadCount        int       `json:"-"`
 	ReadCount          int       `json:"-"`
+	RTL                bool      `json:"rtl"`
 }
 
 func (f *Feed) String() string {

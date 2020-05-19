@@ -165,6 +165,33 @@ func TestUpdateFeedDisabled(t *testing.T) {
 	}
 }
 
+func TestUpdateFeedRTL(t *testing.T) {
+	valueTrue := true
+	valueFalse := false
+	scenarios := []struct {
+		changes  *feedModification
+		feed     *model.Feed
+		expected bool
+	}{
+		{&feedModification{}, &model.Feed{RTL: true}, true},
+		{&feedModification{RTL: &valueTrue}, &model.Feed{RTL: true}, true},
+		{&feedModification{RTL: &valueFalse}, &model.Feed{RTL: true}, false},
+		{&feedModification{}, &model.Feed{RTL: false}, false},
+		{&feedModification{RTL: &valueTrue}, &model.Feed{RTL: false}, true},
+		{&feedModification{RTL: &valueFalse}, &model.Feed{RTL: false}, false},
+	}
+
+	for _, scenario := range scenarios {
+		scenario.changes.Update(scenario.feed)
+		if scenario.feed.RTL != scenario.expected {
+			t.Errorf(`Unexpected result, got %v, want: %v`,
+				scenario.feed.RTL,
+				scenario.expected,
+			)
+		}
+	}
+}
+
 func TestUpdateFeedCategory(t *testing.T) {
 	categoryID := int64(1)
 	changes := &feedModification{CategoryID: &categoryID}

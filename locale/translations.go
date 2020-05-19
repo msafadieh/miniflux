@@ -582,6 +582,7 @@ var translations = map[string]string{
     "form.feed.label.scraper_rules": "Scraper Rules",
     "form.feed.label.rewrite_rules": "Rewrite Rules",
     "form.feed.label.disabled": "Do not refresh this feed",
+    "form.feed.label.rtl": "Use RTL text direction",
     "form.category.label.title": "Title",
     "form.user.label.username": "Username",
     "form.user.label.password": "Password",
@@ -3260,7 +3261,7 @@ var translations = map[string]string{
 
 var translationsChecksums = map[string]string{
 	"de_DE": "7c2c818451a72ac82bbdd0f27e7ea25454b8826f7032b219188644c8f20ffdb5",
-	"en_US": "82bae5216e33a188a0eae633620be6c124295484214f38e6364127684c07b7d8",
+	"en_US": "06207415a80dc9156aa3766a1373beb5642d0753b12ea176fd4a69510bc298c8",
 	"es_ES": "f501a6e373bbef30175e6d944d6bed463a385341a41c54ba129dca261ff6a61d",
 	"fr_FR": "5fa9d2745b3420d0cf29a8aab0ecbbe43d885b3058988f0b9afa35a7f791a7c6",
 	"it_IT": "de975b7d55a7e83214bd7a8f6afd61bd1725feea61be848ebe062ceece4c4060",

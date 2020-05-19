@@ -584,6 +584,7 @@ var templateViewsMap = map[string]string{
 
         <label><input type="checkbox" name="crawler" value="1" {{ if .form.Crawler }}checked{{ end }}> {{ t "form.feed.label.crawler" }}</label>
         <label><input type="checkbox" name="disabled" value="1" {{ if .form.Disabled }}checked{{ end }}> {{ t "form.feed.label.disabled" }}</label>
+        <label><input type="checkbox" name="rtl" value="1" {{ if .form.RTL }}checked{{ end }}> {{ t "form.feed.label.rtl" }}</label>
 
         <div class="buttons">
             <button type="submit" class="button button-primary" data-label-loading="{{ t "form.submit.saving" }}">{{ t "action.update" }}</button> {{ t "action.or" }} <a href="{{ route "feeds" }}">{{ t "action.cancel" }}</a>
@@ -649,12 +650,12 @@ var templateViewsMap = map[string]string{
 
 {{ define "content"}}
 <section class="entry" data-id="{{ .entry.ID }}">
-    <header class="entry-header">
-        <h1>
+	<header class="entry-header">
+        <h1{{ if .entry.Feed.RTL }} dir="rtl"{{ end }}>
             <a href="{{ .entry.URL | safeURL }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">{{ .entry.Title }}</a>
         </h1>
         {{ if .user }}
-        <div class="entry-actions">
+        <div class="entry-actions"{{ if .entry.Feed.RTL }} dir="ltr"{{ end }}>
             <ul>
                 <li>
                     <a href="#"
@@ -724,7 +725,7 @@ var templateViewsMap = map[string]string{
             </ul>
         </div>
         {{ end }}
-        <div class="entry-meta">
+        <div class="entry-meta"{{ if .entry.Feed.RTL }} dir="rtl"{{ end }}>
             <span class="entry-website">
                 {{ if and .user (ne .entry.Feed.Icon.IconID 0) }}
                     <img src="{{ route "icon" "iconID" .entry.Feed.Icon.IconID }}" width="16" height="16" loading="lazy" alt="{{ .entry.Feed.Title }}">
@@ -765,7 +766,7 @@ var templateViewsMap = map[string]string{
     </div>
     {{ end }}
     {{ end }}
-    <article class="entry-content">
+    <article class="entry-content"{{ if .entry.Feed.RTL }} dir="rtl"{{ end }}>
         {{ if .user }}
             {{ noescape (proxyFilter .entry.Content) }}
         {{ else }}
@@ -1542,9 +1543,9 @@ var templateViewsMapChecksums = map[string]string{
 	"create_category":     "6b22b5ce51abf4e225e23a79f81be09a7fb90acb265e93a8faf9446dff74018d",
 	"create_user":         "9b73a55233615e461d1f07d99ad1d4d3b54532588ab960097ba3e090c85aaf3a",
 	"edit_category":       "b1c0b38f1b714c5d884edcd61e5b5295a5f1c8b71c469b35391e4dcc97cc6d36",
-	"edit_feed":           "cc0b5dbb73f81398410958b41771ed38246bc7ae4bd548228f0d48c49a598c2a",
+	"edit_feed":           "436d91e7856c12d1978ea22e47ef33335ea8f9d938670c81269aa29f6a6311a7",
 	"edit_user":           "c692db9de1a084c57b93e95a14b041d39bf489846cbb91fc982a62b72b77062a",
-	"entry":               "d8c30d412d58e14c946ba682166f7c582948e7b0f657d04dcbc3d004267627bb",
+	"entry":               "c6e5ba1b61a2cacfcddb8b12a9396ed308ac3bc9f55e187b7a8d4221fafbcacb",
 	"feed_entries":        "9c70b82f55e4b311eff20be1641733612e3c1b406ce8010861e4c417d97b6dcc",
 	"feeds":               "ec7d3fa96735bd8422ba69ef0927dcccddc1cc51327e0271f0312d3f881c64fd",
 	"history_entries":     "93c0c4cc541eec7f07f5c2634f250ea82ac64024939179276b6f636b72c189bf",

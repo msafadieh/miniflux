@@ -53,6 +53,7 @@ type feedModification struct {
 	Password     *string `json:"password"`
 	CategoryID   *int64  `json:"category_id"`
 	Disabled     *bool   `json:"disabled"`
+	RTL          *bool   `json:"rtl"`
 }
 
 func (f *feedModification) Update(feed *model.Feed) {
@@ -98,6 +99,10 @@ func (f *feedModification) Update(feed *model.Feed) {
 
 	if f.Disabled != nil {
 		feed.Disabled = *f.Disabled
+	}
+
+	if f.RTL != nil {
+		feed.RTL = *f.RTL
 	}
 }
 

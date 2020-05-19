@@ -224,6 +224,7 @@ func (e *EntryQueryBuilder) GetEntries() (model.Entries, error) {
 			f.rewrite_rules,
 			f.crawler,
 			f.user_agent,
+			f.rtl,
 			fi.icon_id,
 			u.timezone
 		FROM
@@ -283,6 +284,7 @@ func (e *EntryQueryBuilder) GetEntries() (model.Entries, error) {
 			&entry.Feed.RewriteRules,
 			&entry.Feed.Crawler,
 			&entry.Feed.UserAgent,
+			&entry.Feed.RTL,
 			&iconID,
 			&tz,
 		)

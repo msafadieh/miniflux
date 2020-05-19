@@ -25,6 +25,7 @@ type FeedForm struct {
 	Username     string
 	Password     string
 	Disabled     bool
+	RTL          bool
 }
 
 // ValidateModification validates FeedForm fields
@@ -50,6 +51,7 @@ func (f FeedForm) Merge(feed *model.Feed) *model.Feed {
 	feed.Username = f.Username
 	feed.Password = f.Password
 	feed.Disabled = f.Disabled
+	feed.RTL = f.RTL
 	return feed
 }
 
@@ -72,5 +74,6 @@ func NewFeedForm(r *http.Request) *FeedForm {
 		Username:     r.FormValue("feed_username"),
 		Password:     r.FormValue("feed_password"),
 		Disabled:     r.FormValue("disabled") == "1",
+		RTL:          r.FormValue("rtl") == "1",
 	}
 }
